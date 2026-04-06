@@ -1,0 +1,51 @@
+# ============================================================================
+# GCG Attack Configurations
+# ============================================================================
+
+default:
+  num_steps: 500
+  search_width: 64
+  topk: 64
+  seed: 42
+  use_prefix_cache: false
+
+extended:
+  num_steps: 1500
+  search_width: 64
+  topk: 64
+  seed: 42
+  use_prefix_cache: false
+
+# ============================================================================
+# Spectral Monitoring Configurations
+# ============================================================================
+
+spectral_full:
+  compute_every_n_steps: 1
+  store_gradients: true
+  store_gradients_every_n_steps: 10
+  store_projected: true
+  compute_gradient_norms: true
+  compute_cosine_similarity: true
+  compute_top_k_tokens: true
+  top_k: 10
+
+spectral_light:
+  compute_every_n_steps: 1
+  store_gradients: false
+  store_gradients_every_n_steps: 10
+  store_projected: true
+  compute_gradient_norms: true
+  compute_cosine_similarity: true
+  compute_top_k_tokens: true
+  top_k: 10
+
+spectral_off:
+  compute_every_n_steps: 999999
+  store_gradients: false
+  store_gradients_every_n_steps: 999999
+  store_projected: false
+  compute_gradient_norms: false
+  compute_cosine_similarity: false
+  compute_top_k_tokens: false
+  top_k: 10

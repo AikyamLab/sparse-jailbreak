@@ -1,0 +1,325 @@
+# ============================================================================
+# Model + SAE Configurations
+# ============================================================================
+# Each top-level key is a config name usable with --config <name>
+#
+# sae_type: "none" | "goodfire" | "gemma_scope"
+#   - "none"        → bare HF model (baseline)
+#   - "goodfire"    → Goodfire SAE (LLaMA, Mistral)
+#   - "gemma_scope" → Gemma Scope via sae_lens (Gemma-2 family)
+# ============================================================================
+
+# ── Gemma-2-2B ──────────────────────────────────────────────────────────────
+
+gemma_2b_base:
+  model_name: google/gemma-2-2b
+  sae_type: none
+  dtype: float32
+
+gemma_2b_sae:
+  model_name: google/gemma-2-2b
+  sae_type: gemma_scope
+  sae_release: gemma-scope-2b-pt-res-canonical
+  sae_id: layer_12/width_16k/canonical
+  dtype: float32
+
+# ── Gemma-2-9B ──────────────────────────────────────────────────────────────
+
+gemma_9b_base:
+  model_name: google/gemma-2-9b
+  sae_type: none
+  dtype: float32
+
+gemma_9b_sae:
+  model_name: google/gemma-2-9b
+  sae_type: gemma_scope
+  sae_release: gemma-scope-9b-pt-res-canonical
+  sae_id: layer_19/width_16k/canonical
+  dtype: float32
+
+# ── Gemma-2-27B ─────────────────────────────────────────────────────────────
+
+gemma_27b_base:
+  model_name: google/gemma-2-27b
+  sae_type: none
+  dtype: bfloat16
+
+gemma_27b_sae:
+  model_name: google/gemma-2-27b
+  sae_type: gemma_scope
+  sae_release: gemma-scope-27b-pt-res-canonical
+  sae_id: layer_34/width_131k/canonical
+  dtype: bfloat16
+
+# ── LLaMA-3.1-8B-Instruct ──────────────────────────────────────────────────
+
+llama_8b_base:
+  model_name: meta-llama/Meta-Llama-3.1-8B-Instruct
+  sae_type: none
+  dtype: bfloat16
+
+llama_8b_sae:
+  model_name: meta-llama/Meta-Llama-3.1-8B-Instruct
+  sae_type: goodfire
+  sae_repo_id: Goodfire/Llama-3.1-8B-Instruct-SAE-l19
+  sae_filename: Llama-3.1-8B-Instruct-SAE-l19.pth
+  sae_layer: model.layers.19
+  d_model: 4096
+  expansion_factor: 16
+  dtype: bfloat16
+
+# ── LLaMA-3.3-70B-Instruct ─────────────────────────────────────────────────
+
+llama_70b_base:
+  model_name: meta-llama/Llama-3.3-70B-Instruct
+  sae_type: none
+  dtype: bfloat16
+
+llama_70b_sae:
+  model_name: meta-llama/Llama-3.3-70B-Instruct
+  sae_type: goodfire
+  sae_repo_id: Goodfire/Llama-3.3-70B-Instruct-SAE-l50
+  sae_filename: Llama-3.3-70B-Instruct-SAE-l50.pt
+  sae_layer: model.layers.50
+  d_model: 8192
+  expansion_factor: 8
+  dtype: bfloat16
+
+# ── Mistral-7B ──────────────────────────────────────────────────────────────
+
+mistral_7b_base:
+  model_name: mistralai/Mistral-7B-v0.1
+  sae_type: none
+  dtype: bfloat16
+
+mistral_7b_sae:
+  model_name: mistralai/Mistral-7B-v0.1
+  sae_type: mistral_res
+  sae_repo_id: JoshEngels/Mistral-7B-Residual-Stream-SAEs
+  sae_layer: model.layers.16
+  sae_layer_idx: 16
+  dtype: bfloat16
+
+# ── Qwen2.5-7B-Instruct ────────────────────────────────────────────────────
+
+qwen_7b_base:
+  model_name: Qwen/Qwen2.5-7B-Instruct
+  sae_type: none
+  dtype: float32
+
+qwen_7b_sae:
+  model_name: Qwen/Qwen2.5-7B-Instruct
+  sae_type: gemma_scope
+  sae_release: qwen2.5-7b-instruct-andyrdt
+  sae_id: resid_post_layer_19_trainer_1
+  sae_layer_idx: 19
+  dtype: float32
+
+# ============================================================================
+# Layer Ablation Configs (Qwen2.5-7B, andyrdt SAEs via sae_lens)
+# ============================================================================
+# SAE release: qwen2.5-7b-instruct-andyrdt
+# All use trainer_1, width 131k (131072)
+
+qwen_7b_sae_layer3:
+  model_name: Qwen/Qwen2.5-7B-Instruct
+  sae_type: gemma_scope
+  sae_release: qwen2.5-7b-instruct-andyrdt
+  sae_id: resid_post_layer_3_trainer_1
+  sae_layer_idx: 3
+  dtype: float32
+
+qwen_7b_sae_layer7:
+  model_name: Qwen/Qwen2.5-7B-Instruct
+  sae_type: gemma_scope
+  sae_release: qwen2.5-7b-instruct-andyrdt
+  sae_id: resid_post_layer_7_trainer_1
+  sae_layer_idx: 7
+  dtype: float32
+
+qwen_7b_sae_layer11:
+  model_name: Qwen/Qwen2.5-7B-Instruct
+  sae_type: gemma_scope
+  sae_release: qwen2.5-7b-instruct-andyrdt
+  sae_id: resid_post_layer_11_trainer_1
+  sae_layer_idx: 11
+  dtype: float32
+
+qwen_7b_sae_layer15:
+  model_name: Qwen/Qwen2.5-7B-Instruct
+  sae_type: gemma_scope
+  sae_release: qwen2.5-7b-instruct-andyrdt
+  sae_id: resid_post_layer_15_trainer_1
+  sae_layer_idx: 15
+  dtype: float32
+
+qwen_7b_sae_layer19:
+  model_name: Qwen/Qwen2.5-7B-Instruct
+  sae_type: gemma_scope
+  sae_release: qwen2.5-7b-instruct-andyrdt
+  sae_id: resid_post_layer_19_trainer_1
+  sae_layer_idx: 19
+  dtype: float32
+
+qwen_7b_sae_layer23:
+  model_name: Qwen/Qwen2.5-7B-Instruct
+  sae_type: gemma_scope
+  sae_release: qwen2.5-7b-instruct-andyrdt
+  sae_id: resid_post_layer_23_trainer_1
+  sae_layer_idx: 23
+  dtype: float32
+
+qwen_7b_sae_layer27:
+  model_name: Qwen/Qwen2.5-7B-Instruct
+  sae_type: gemma_scope
+  sae_release: qwen2.5-7b-instruct-andyrdt
+  sae_id: resid_post_layer_27_trainer_1
+  sae_layer_idx: 27
+  dtype: float32
+
+# ============================================================================
+# Layer Ablation Configs (Gemma-2-9B)
+# ============================================================================
+
+gemma_9b_sae_layer5:
+  model_name: google/gemma-2-9b
+  sae_type: gemma_scope
+  sae_release: gemma-scope-9b-pt-res-canonical
+  sae_id: layer_5/width_16k/canonical
+  dtype: float32
+
+gemma_9b_sae_layer10:
+  model_name: google/gemma-2-9b
+  sae_type: gemma_scope
+  sae_release: gemma-scope-9b-pt-res-canonical
+  sae_id: layer_10/width_16k/canonical
+  dtype: float32
+
+gemma_9b_sae_layer20:
+  model_name: google/gemma-2-9b
+  sae_type: gemma_scope
+  sae_release: gemma-scope-9b-pt-res-canonical
+  sae_id: layer_20/width_16k/canonical
+  dtype: float32
+
+gemma_9b_sae_layer30:
+  model_name: google/gemma-2-9b
+  sae_type: gemma_scope
+  sae_release: gemma-scope-9b-pt-res-canonical
+  sae_id: layer_30/width_16k/canonical
+  dtype: float32
+
+gemma_9b_sae_layer35:
+  model_name: google/gemma-2-9b
+  sae_type: gemma_scope
+  sae_release: gemma-scope-9b-pt-res-canonical
+  sae_id: layer_35/width_16k/canonical
+  dtype: float32
+
+# ============================================================================
+# Layer Ablation Configs (LLaMA-3.1-8B, andyrdt SAEs via sae_lens)
+# ============================================================================
+# SAE release: llama-3.1-8b-instruct-andyrdt
+# HF repo: andyrdt/saes-llama-3.1-8b-instruct
+# All use trainer_1 (k=64) at different layers
+
+llama_8b_sae_layer3:
+  model_name: meta-llama/Meta-Llama-3.1-8B-Instruct
+  sae_type: andyrdt_layer
+  sae_layer_idx: 3
+  dtype: bfloat16
+
+llama_8b_sae_layer7:
+  model_name: meta-llama/Meta-Llama-3.1-8B-Instruct
+  sae_type: andyrdt_layer
+  sae_layer_idx: 7
+  dtype: bfloat16
+
+llama_8b_sae_layer11:
+  model_name: meta-llama/Meta-Llama-3.1-8B-Instruct
+  sae_type: andyrdt_layer
+  sae_layer_idx: 11
+  dtype: bfloat16
+
+llama_8b_sae_layer15:
+  model_name: meta-llama/Meta-Llama-3.1-8B-Instruct
+  sae_type: andyrdt_layer
+  sae_layer_idx: 15
+  dtype: bfloat16
+
+llama_8b_sae_layer19:
+  model_name: meta-llama/Meta-Llama-3.1-8B-Instruct
+  sae_type: andyrdt_layer
+  sae_layer_idx: 19
+  dtype: bfloat16
+
+llama_8b_sae_layer23:
+  model_name: meta-llama/Meta-Llama-3.1-8B-Instruct
+  sae_type: andyrdt_layer
+  sae_layer_idx: 23
+  dtype: bfloat16
+
+llama_8b_sae_layer27:
+  model_name: meta-llama/Meta-Llama-3.1-8B-Instruct
+  sae_type: andyrdt_layer
+  sae_layer_idx: 27
+  dtype: bfloat16
+
+# ============================================================================
+# Sparsity Ablation Configs (LLaMA-3.1-8B, Layer 19, andyrdt SAEs)
+# ============================================================================
+# trainer_0 = k=32, trainer_1 = k=64, trainer_2 = k=128, trainer_3 = k=256
+# All d_sae = 131072. Trainers 0,2,3 require hot-swap from ae.pt.
+
+llama_8b_sae_l19_k32:
+  model_name: meta-llama/Meta-Llama-3.1-8B-Instruct
+  sae_type: andyrdt_sparsity
+  sae_layer_idx: 19
+  trainer: 0
+  dtype: bfloat16
+
+llama_8b_sae_l19_k64:
+  model_name: meta-llama/Meta-Llama-3.1-8B-Instruct
+  sae_type: andyrdt_sparsity
+  sae_layer_idx: 19
+  trainer: 1
+  dtype: bfloat16
+
+llama_8b_sae_l19_k128:
+  model_name: meta-llama/Meta-Llama-3.1-8B-Instruct
+  sae_type: andyrdt_sparsity
+  sae_layer_idx: 19
+  trainer: 2
+  dtype: bfloat16
+
+llama_8b_sae_l19_k256:
+  model_name: meta-llama/Meta-Llama-3.1-8B-Instruct
+  sae_type: andyrdt_sparsity
+  sae_layer_idx: 19
+  trainer: 3
+  dtype: bfloat16
+
+# ============================================================================
+# Sparsity Ablation Configs (Gemma-2-9B, Layer 20)
+# ============================================================================
+
+gemma_9b_sae_l20_w16k:
+  model_name: google/gemma-2-9b
+  sae_type: gemma_scope
+  sae_release: gemma-scope-9b-pt-res-canonical
+  sae_id: layer_20/width_16k/canonical
+  dtype: float32
+
+gemma_9b_sae_l20_w65k:
+  model_name: google/gemma-2-9b
+  sae_type: gemma_scope
+  sae_release: gemma-scope-9b-pt-res-canonical
+  sae_id: layer_20/width_65k/canonical
+  dtype: float32
+
+gemma_9b_sae_l20_w131k:
+  model_name: google/gemma-2-9b
+  sae_type: gemma_scope
+  sae_release: gemma-scope-9b-pt-res-canonical
+  sae_id: layer_20/width_131k/canonical
+  dtype: float32
