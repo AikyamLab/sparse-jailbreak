@@ -1,11 +1,15 @@
-# Towards Understanding the Robustness of Sparse Autoencoders
-
-**Ahson Saiyed, Sabrina Sadiekh, Chirag Agarwal**
-
+<h1 align="center">Towards Understanding the Robustness of Sparse Autoencoders</h1>
+ 
 <p align="center">
-  <a href="https://arxiv.org/abs/XXXX.XXXXX"><b>arXiv</b></a>
+  <b>Ahson Saiyed, Sabrina Sadiekh, Chirag Agarwal</b>
 </p>
-
+ 
+<p align="center">
+  <a href="https://ahsonsaiyed.github.io/sparse-jailbreak/"><img src="https://img.shields.io/badge/Website-Project_Page-blue" alt="Project Page"></a>
+  <a href="https://arxiv.org/abs/XXXX.XXXXX"><img src="https://img.shields.io/badge/arXiv-XXXX.XXXXX-b31b1b" alt="arXiv"></a>
+  <a href="https://huggingface.co/datasets/XXXX/XXXX"><img src="https://img.shields.io/badge/🤗_Hugging_Face-Dataset-yellow" alt="HuggingFace"></a>
+</p>
+ 
 ---
 
 ## Overview
