@@ -241,27 +241,28 @@ pip install -r requirements.txt
 ---
 
 ## Hardware Requirements
-
-| Model | VRAM (approx) | GCG time/prompt (A100) |
-|:---|:---|:---|
-| Gemma-2-2B + SAE | ~12 GB | ~15 min |
-| Gemma-2-9B + SAE | ~40 GB (fp32) | ~30 min |
-| LLaMA-3.1-8B + SAE | ~20 GB (bf16) | ~30 min |
-| Mistral-7B + SAE | ~20 GB (bf16) | ~30 min |
-| Qwen2.5-7B + SAE | ~35 GB (fp32) | ~30 min |
-| Gemma-2-27B + SAE | ~60 GB (bf16) | ~60 min |
-| LLaMA-3.3-70B + SAE | ~150 GB (bf16) | ~120 min |
-
+ 
+| Model | VRAM (approx) |
+|:---|:---|
+| Gemma-2-2B + SAE | ~12 GB |
+| Gemma-2-9B + SAE | ~40 GB (fp32) |
+| LLaMA-3.1-8B + SAE | ~20 GB (bf16) |
+| Mistral-7B + SAE | ~20 GB (bf16) |
+| Qwen2.5-7B + SAE | ~35 GB (fp32) |
+| Gemma-2-27B + SAE | ~60 GB (bf16) |
+| LLaMA-3.3-70B + SAE | ~150 GB (bf16) |
+ 
+---
 ---
 
-## Citation
+## Citation (placeholder)
 
 ```bibtex
-@inproceedings{anonymous2026sparseshield,
-  title     = {Towards Understanding the Robustness of Sparse Autoencoders},
-  author    = {Anonymous},
-  booktitle = {Proceedings of the Association for Computational Linguistics (ACL)},
-  year      = {2026},
+@article{saiyed2026sparseshield,
+  title   = {Towards Understanding the Robustness of Sparse Autoencoders},
+  author  = {Saiyed, Ahson and Sadiekh, Sabrina and Agarwal, Chirag},
+  journal = {arXiv preprint arXiv:XXXX.XXXXX},
+  year    = {2026},
 }
 ```
 
