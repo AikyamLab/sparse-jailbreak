@@ -1,0 +1,18 @@
+input:
+  pickle_file: suffixes/lightweight_suffixes_with_beast_1_3.pkl
+model:
+  name: mistralai/Mistral-7B-v0.1
+  cache_dir: null
+sae:
+  type: mistral_res
+  repo: JoshEngels/Mistral-7B-Residual-Stream-SAEs
+  layer: 16
+  size: 65536
+output:
+  dir: results/features/mistral_7b
+processing:
+  batch_size: 4
+  max_length: 512
+  device: auto
+huggingface:
+  token: null

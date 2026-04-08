@@ -1,0 +1,18 @@
+input:
+  pickle_file: suffixes/lightweight_suffixes_with_beast_1_3.pkl
+model:
+  name: google/gemma-2-9b
+  cache_dir: null
+sae:
+  type: gemma_scope
+  release: gemma-scope-9b-pt-res-canonical
+  id: layer_19/width_16k/canonical
+  layer: 19
+output:
+  dir: results/features/gemma_9b
+processing:
+  batch_size: 4
+  max_length: 512
+  device: auto
+huggingface:
+  token: null

@@ -1,0 +1,18 @@
+input:
+  pickle_file: suffixes/lightweight_suffixes_with_beast_1_3.pkl
+model:
+  name: meta-llama/Meta-Llama-3.1-8B-Instruct
+  cache_dir: null
+sae:
+  type: goodfire
+  name: Llama-3.1-8B-Instruct-SAE-l19
+  layer: 19
+  expansion_factor: 16
+output:
+  dir: results/features/llama_8b
+processing:
+  batch_size: 4
+  max_length: 512
+  device: auto
+huggingface:
+  token: null
